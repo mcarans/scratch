@@ -24,6 +24,13 @@ def main():
         else:
             organisation["downloads"] += downloads
             organisation["datasets"] += 1
+    organisation_names = Organization.get_all_organization_names()
+    for organisation_name in organisation_names:
+        if organisation_name not in organisations:
+            organisation = Organization.read_from_hdx(organisation_name)
+            organisations[organisation_name] = organisation
+            organisation["downloads"] = 0
+            organisation["datasets"] = 0
     headers = ["Organisation name", "Organisation title", "Downloads", "Datasets", "Followers"]
     rows = list()
     for organisation_name in sorted(organisations):
