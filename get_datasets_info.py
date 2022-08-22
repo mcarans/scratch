@@ -19,7 +19,7 @@ def main():
     jql_query = """
     function main() {
       return Events({
-        from_date: '2022-01-01',
+        from_date: '2017-01-01',
         to_date: '2022-12-31',
         event_selectors: [{event: "resource download"}]
       })
@@ -38,7 +38,7 @@ def main():
         (
             "name",
             "title",
-            "downloads this year",
+            "downloads since 2017",
             "downloads all time",
             "date created",
             "date metadata updated",
