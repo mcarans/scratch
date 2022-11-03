@@ -4,7 +4,9 @@ from os import getenv
 import gspread
 from hdx.utilities.downloader import Download
 
+# From https://docs.google.com/spreadsheets/d/1yXLu1jE2j6dDQ8bIbHzSH4DTfbIClJ6M_0PHVRqzsL8/edit#gid=334970416
 oldurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQmBj7HFLWhr6Ilvc-na5uqmdEUXYIIgESoQ5JX37PQbFNWkDyNe3LK0P_7htuTy-747sZkC-9DOFOK/pub?gid=334970416&single=true&output=csv"
+# From https://docs.google.com/spreadsheets/d/1fTO8T8ZVXU9eoh3EIrw490Z2pX7E59MhHmCvT_cXmNs/edit#gid=70008169
 newurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQJKjr25NZAIQELrFnUhVnL-7SxC8SwW9I6usm5Xvwyw00zRC-DhlLh74EVniX732w_BDFoQLrNDKKL/pub?gid=70008169&single=true&output=csv"
 outputurl = "https://docs.google.com/spreadsheets/d/1LRR4oBl5uKmBwbECkZv0JzrUbxHjfHjpulXkkRn-Hco/edit#gid=0"
 
