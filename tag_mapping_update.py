@@ -27,7 +27,7 @@ for row in iterator:
         deleted_tags.add(current_tag)
         mapped_tags.add(current_tag)
         continue
-    if new_tag != current_tag:
+    if new_tag != current_tag and current_tag not in mapped_tags:
         new_tag_mapping[current_tag] = new_tag
         rows.append([current_tag, "merge", new_tag])
         mapped_tags.add(current_tag)
