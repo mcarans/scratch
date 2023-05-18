@@ -8,6 +8,8 @@ from hdx.utilities.downloader import Download
 oldurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQmBj7HFLWhr6Ilvc-na5uqmdEUXYIIgESoQ5JX37PQbFNWkDyNe3LK0P_7htuTy-747sZkC-9DOFOK/pub?gid=334970416&single=true&output=csv"
 # From https://docs.google.com/spreadsheets/d/1fTO8T8ZVXU9eoh3EIrw490Z2pX7E59MhHmCvT_cXmNs/edit#gid=70008169
 newurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQJKjr25NZAIQELrFnUhVnL-7SxC8SwW9I6usm5Xvwyw00zRC-DhlLh74EVniX732w_BDFoQLrNDKKL/pub?gid=70008169&single=true&output=csv"
+# From https://docs.google.com/spreadsheets/d/1LRR4oBl5uKmBwbECkZv0JzrUbxHjfHjpulXkkRn-Hco/edit#gid=819440074
+additional_mappings_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQD3ba751XbWS5GVwdJmzOF9mc7dnm56hE2U8di12JnpYkdseILmjfGSn1W7UVQzmHKSd6p8FWaXdFL/pub?gid=819440074&single=true&output=csv"
 outputurl = "https://docs.google.com/spreadsheets/d/1LRR4oBl5uKmBwbECkZv0JzrUbxHjfHjpulXkkRn-Hco/edit#gid=0"
 
 header = ["Current Tag", "Action to Take", "New Tag(s)"]
@@ -78,6 +80,15 @@ for row in iterator:
         mapped_tags.add(old_tag)
     else:
         print(f"Don't know what to do with {old_tag}!")
+
+headers, iterator = downloader.get_tabular_rows(additional_mappings_url, dict_form=True)
+for row in iterator:
+    tag = row["Tag"]
+    accepted_tag = row["Accepted Tag"]
+    if accepted_tag != tag and tag not in mapped_tags:
+        new_tag_mapping[tag] = accepted_tag
+        rows.append([tag, "merge", accepted_tag])
+        mapped_tags.add(tag)
 
 gsheet_auth = getenv("GSHEET_AUTH")
 info = json.loads(gsheet_auth)
