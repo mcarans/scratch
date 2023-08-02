@@ -1,3 +1,5 @@
+from os.path import join, expanduser
+
 from hdx.data.dataset import Dataset
 from hdx.data.user import User
 from hdx.facades.simple import facade
@@ -35,5 +37,10 @@ def main():
     print(f"Datasets changed: {datasets_str}")
 
 
-if __name__ == "__main__":
-    facade(main, hdx_site="prod", user_agent='test')
+if __name__ == '__main__':
+    facade(
+        main,
+        hdx_site="prod",
+        user_agent_config_yaml=join(expanduser("~"), ".useragents.yml"),
+        user_agent_lookup="change_maintainer",
+    )

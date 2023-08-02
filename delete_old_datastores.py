@@ -1,3 +1,5 @@
+from os.path import join, expanduser
+
 from hdx.data.dataset import Dataset
 from hdx.data.resource import Resource
 from hdx.facades.simple import facade
@@ -25,4 +27,9 @@ def main():
 
 
 if __name__ == '__main__':
-    facade(main, hdx_site='prod', user_agent='test')
+    facade(
+        main,
+        hdx_site="prod",
+        user_agent_config_yaml=join(expanduser("~"), ".useragents.yml"),
+        user_agent_lookup="delete_datastores",
+    )
