@@ -49,6 +49,8 @@ def main():
     # or
     dataset.add_other_location("world")
 
+    logger.info("Dataset metadata created!")
+
     path = join(get_temp_dir(), "test.csv")
     with open(path, "w", encoding="UTF8") as f:
         writer = csv.writer(f)
@@ -60,16 +62,22 @@ def main():
         writer.writerow([1, 2, 3, 4])
         writer.writerow([5, 6, 7, 8])
 
+    logger.info(f"Test file {path} created!")
+
     resource = Resource(
         {"name": "test file", "description": "description of test file"}
     )
     resource.set_file_type("csv")
     resource.set_file_to_upload(path)
+
+    logger.info("Resource metadata created!")
+
     dataset.add_update_resource(resource)
     dataset.create_in_hdx(
         remove_additional_resources=True,
         updated_by_script="GIS4tech",
     )
+    logger.info("Completed!")
 
 
 if __name__ == "__main__":
