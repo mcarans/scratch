@@ -27,7 +27,7 @@ def main(access_token: str, save: bool = False, use_saved: bool = False) -> None
         None
     """
     with temp_dir(
-        "test_idmc", delete_on_success=True, delete_on_failure=False
+        "test_hpc_hno", delete_on_success=True, delete_on_failure=False
     ) as folder:
         with Download(
             extra_params_yaml=join(expanduser("~"), ".extraparams.yml"),
@@ -110,9 +110,6 @@ def main(access_token: str, save: bool = False, use_saved: bool = False) -> None
                     if national_total:
                         caseload_results["national"]["total"] = national_total
                     for attachment in caseload["disaggregatedAttachments"]:
-                        adminlevel = location.get("adminLevel")
-                        if adminlevel is None or adminlevel > 2:
-                            continue
                         location_id = attachment["locationId"]
                         location = location_mapping.get(location_id)
                         if not location:
@@ -120,6 +117,9 @@ def main(access_token: str, save: bool = False, use_saved: bool = False) -> None
                             if error not in errors:
                                 errors.append(error)
                                 logger.error(error)
+                            continue
+                        adminlevel = location.get("adminLevel")
+                        if adminlevel is None or adminlevel > 2:
                             continue
                         if adminlevel == 0:
                             results = caseload_results.get("national", {})
