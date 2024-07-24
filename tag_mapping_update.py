@@ -12,6 +12,9 @@ newurl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQJKjr25NZAIQELrFnUhVn
 additional_mappings_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQD3ba751XbWS5GVwdJmzOF9mc7dnm56hE2U8di12JnpYkdseILmjfGSn1W7UVQzmHKSd6p8FWaXdFL/pub?gid=819440074&single=true&output=csv"
 outputurl = "https://docs.google.com/spreadsheets/d/1LRR4oBl5uKmBwbECkZv0JzrUbxHjfHjpulXkkRn-Hco/edit#gid=0"
 
+# update this by hand
+# https://docs.google.com/spreadsheets/d/1_nhIETuzJhlsNEOv39PhZ66lpENTlfjH/edit?gid=334970416#gid=334970416
+
 header = ["Current Tag", "Action to Take", "New Tag(s)"]
 rows = list()
 
@@ -99,9 +102,9 @@ gsheet = gc.open_by_url(outputurl)
 rows = sorted(rows)
 outputtagmapping = gsheet.worksheet("Tag Mapping")
 outputtagmapping.clear()
-outputtagmapping.update("A1", [header] + rows)
+outputtagmapping.update([header] + rows, "A1")
 
 a_rows = [[tag] for tag in sorted(accepted_tags)]
 taglist = gsheet.worksheet("Full List of Accepted Tags")
 taglist.clear()
-taglist.update("A1", a_rows)
+taglist.update(a_rows, "A1")
