@@ -41,7 +41,7 @@ def main():
     dataset.set_expected_update_frequency("Every year")
     dataset.set_subnational(False)
     dataset.add_tags(["geodata"])
-    dataset.set_reference_period(parse_date("2020-03-05"), parse_date("2021-02-25"))
+    dataset.set_time_period(parse_date("2020-03-05"), parse_date("2021-02-25"))
 
     dataset.add_country_location("AFG")
     # or
@@ -67,7 +67,7 @@ def main():
     resource = Resource(
         {"name": "test file", "description": "description of test file"}
     )
-    resource.set_file_type("csv")
+    resource.set_format("csv")
     resource.set_file_to_upload(path)
 
     logger.info("Resource metadata created!")

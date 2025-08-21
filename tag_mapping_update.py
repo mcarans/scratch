@@ -16,11 +16,11 @@ outputurl = "https://docs.google.com/spreadsheets/d/1LRR4oBl5uKmBwbECkZv0JzrUbxH
 # https://docs.google.com/spreadsheets/d/1_nhIETuzJhlsNEOv39PhZ66lpENTlfjH/edit?gid=334970416#gid=334970416
 
 header = ["Current Tag", "Action to Take", "New Tag(s)"]
-rows = list()
+rows = []
 
 downloader = Download(user_agent="test")
 headers, iterator = downloader.get_tabular_rows(newurl, dict_form=True)
-new_tag_mapping = dict()
+new_tag_mapping = {}
 mapped_tags = set()
 accepted_tags = set()
 deleted_tags = set()

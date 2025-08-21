@@ -15,12 +15,14 @@ def main():
     no_broken_resources = 0
     no_web_app_resources = 0
     session = get_session(retry_attempts=0)
-    datasetlist = Dataset.search_in_hdx(fq="organization:wfp")
+    datasetlist = Dataset.search_in_hdx(fq="organization:worldpop")
     print("Obtained dataset list. Processing...")
     for dataset in datasetlist:
+        # if "2015-2030" not in dataset["name"]:
+        #     continue
         for resource in dataset.get_resources():
             no_resources += 1
-            if no_resources % 100 == 0:
+            if no_resources % 10 == 0:
                 print(f"Processed {no_resources}...")
             if resource["url_type"] != "api":
                 no_int_resources += 1
